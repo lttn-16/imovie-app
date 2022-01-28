@@ -1,0 +1,8 @@
+<div class="card">
+  <img
+    class="card__background"
+    [src]="resizeImage(data.coverVerticalUrl, '250')"
+    (click)="openDetails(data)"
+  />
+  <div class="card__title" (click)="openDetails(data)">{{ data.name }}</div>
+</div>

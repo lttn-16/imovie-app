@@ -1,0 +1,34 @@
+<div class="section" *ngIf="data">
+  <div class="section__top">
+    <div class="section__top__title">
+      {{ data.homeSectionName.replace("on Loklok", "") }}
+    </div>
+    <div class="swiper__button">
+      <div (click)="slidePrev()" class="swiper__button__btn">
+        <mat-icon class="swiper__button__icon">chevron_left</mat-icon>
+      </div>
+      <div (click)="slideNext()" class="swiper__button__btn">
+        <mat-icon class="swiper__button__icon">chevron_right</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="section__bottom">
+    <swiper [config]="config" class="swiper" #swiper>
+      <ng-template swiperSlide *ngFor="let item of data.recommendContentVOList">
+        <div
+          class="swiper__container"
+          *ngIf="item.imageUrl"
+          (click)="onClick(item)"
+        >
+          <img
+            class="swiper__background"
+            [src]="resizeImage(item.imageUrl, '250')"
+          />
+        </div>
+        <div class="swiper__title" (click)="onClick(item)">
+          {{ item.title }}
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+</div>

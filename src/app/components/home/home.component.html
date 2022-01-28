@@ -1,0 +1,29 @@
+<swiper [config]="config" class="swiper" #swiper *ngIf="bannerData">
+  <ng-template swiperSlide *ngFor="let banner of bannerData">
+    <img
+      class="swiper__background"
+      [src]="resizeImage(banner.imageUrl, '900')"
+    />
+
+    <div class="swiper__info">
+      <h1 class="swiper__info__name">{{ banner.title }}</h1>
+      <div class="swiper__info__wrapper">
+        <button class="swiper__info__btn" (click)="onClick(banner)">
+          Watch
+        </button>
+        <button class="swiper__info__add">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="swiper__button">
+      <div (click)="slidePrev()" class="swiper__button__btn">
+        <mat-icon class="swiper__button__icon">chevron_left</mat-icon>
+      </div>
+      <div (click)="slideNext()" class="swiper__button__btn">
+        <mat-icon class="swiper__button__icon">chevron_right</mat-icon>
+      </div>
+    </div>
+  </ng-template>
+</swiper>

@@ -1,0 +1,67 @@
+@use "../../../scss/" as *;
+
+.section {
+  margin-bottom: 10px;
+  @include mobile {
+    margin-bottom: 20px;
+  }
+
+  &__top {
+    @include flex(center, space-between);
+    color: $color-white;
+    margin-bottom: 20px;
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+.swiper {
+  &__background {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+
+  &__title {
+    color: $color-white;
+    margin: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+      color: $color-red-primary;
+    }
+  }
+
+  &__button {
+    color: rgb(189, 176, 176);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    &__btn {
+      background-color: transparent;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid $color-white;
+      &:hover {
+        background-color: $color-btn-bg;
+        color: white;
+        border: none;
+      }
+    }
+    &__icon {
+      transform: translateY(2px);
+    }
+  }
+}

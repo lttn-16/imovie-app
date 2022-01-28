@@ -1,0 +1,109 @@
+@use "../../../scss/" as *;
+
+.detail {
+  color: $color-white;
+  margin: 5px 0;
+  @include phone {
+    margin: 30px 0;
+  }
+  &__trailer {
+    width: 100%;
+    height: 400px;
+  }
+  &__title {
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: bold;
+    line-height: 32px;
+
+    @include mobile {
+      font-size: 22px;
+    }
+
+    @include phone {
+      font-size: 30px;
+      margin: 20px 0;
+    }
+  }
+  &__rate {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 20px;
+    &--star,
+    &--date {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &__tags {
+    background-color: #313239;
+    padding: 5px 15px;
+    border-radius: 15px;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: #3d3e46;
+    }
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  &__des {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 20px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  &__episodes {
+    &__title {
+      font-weight: 500;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    &__ep {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 4px;
+      background-color: #313239;
+      cursor: pointer;
+      margin-bottom: 10px;
+
+      &:hover {
+        background-color: #3d3e46;
+      }
+    }
+  }
+}
+
+.active {
+  background-color: $color-red-primary;
+  &:hover {
+    background-color: $color-red-light;
+  }
+}
+
+.icon {
+  width: 17px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

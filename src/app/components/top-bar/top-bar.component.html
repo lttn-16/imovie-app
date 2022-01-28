@@ -1,0 +1,19 @@
+<div class="top-bar">
+  <app-search></app-search>
+  <div>
+    <div class="top-bar__title" *ngIf="topSearch">Top Searches</div>
+    <div class="top-bar__item" *ngFor="let data of topSearch">
+      <img
+        class="top-bar__cover"
+        alt="cover"
+        [src]="resizeImage(data.cover, '250')"
+        (click)="onClick(data)"
+      />
+      <div class="top-bar__text">
+        <div class="top-bar__text__name" (click)="onClick(data)">
+          {{ data.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

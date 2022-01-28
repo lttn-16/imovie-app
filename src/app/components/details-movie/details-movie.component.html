@@ -1,0 +1,45 @@
+<div class="detail">
+  <vm-player class="detail__trailer" *ngIf="detailData.mediaUrl">
+    <vm-hls version="latest" [poster]="detailData.coverHorizontalUrl">
+      <source
+        [attr.data-src]="detailData.mediaUrl"
+        type="application/x-mpegURL"
+      />
+    </vm-hls>
+    <vm-default-ui> </vm-default-ui>
+  </vm-player>
+
+  <div class="detail__title">{{ detailData.name }}</div>
+  <div class="detail__rate">
+    <div class="detail__rate--star">
+      <img class="icon" src="../../../assets/icon/star.png" />
+      <span>{{ detailData.score }}</span>
+    </div>
+    <div class="detail__rate--date">
+      <img class="icon" src="../../../assets/icon/calendar.png" />
+      <span>{{ detailData.year }}</span>
+    </div>
+  </div>
+  <div class="detail__tags" *ngFor="let item of detailData.tagNameList">
+    {{ item }}
+  </div>
+  <div class="detail__des">
+    {{ detailData.introduction }}
+  </div>
+  <div class="detail__episodes" *ngIf="detailData.episodeCount">
+    <div class="detail__episodes__title">Episodes</div>
+    <div class="wrapper">
+      <ng-container *ngFor="let item of detailData.episodeVo" class="wrapper">
+        <div
+          class="detail__episodes__ep"
+          [routerLink]="['/tv', detailData.id]"
+          (click)="onClickEpi(item)"
+          [queryParams]="{ episode: item.seriesNo }"
+          [ngClass]="episode === item.seriesNo ? 'active' : ''"
+        >
+          {{ item.seriesNo }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

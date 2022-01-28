@@ -1,0 +1,36 @@
+<div class="series" *ngIf="detailData.refList.length > 0">
+  <div class="series__title">In the series</div>
+  <div class="series__list">
+    <div class="series__item" *ngFor="let item of detailData.refList">
+      <img
+        class="series__cover"
+        [src]="resizeImage(item.coverVerticalUrl, '900')"
+      />
+      <div class="series__content">
+        <div class="series__content--title">{{ item.name }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="series" *ngIf="detailData.likeList.length > 0">
+  <div class="series__title">Similar to this</div>
+  <div class="series__list">
+    <div class="series__item" *ngFor="let item of detailData.likeList">
+      <img
+        class="series__cover"
+        [src]="resizeImage(item.coverVerticalUrl, '250')"
+        (click)="onClick(item)"
+      />
+      <div class="series__content">
+        <div class="series__content--title" (click)="onClick(item)">
+          {{ item.name }}
+        </div>
+        <div class="series__content--star">
+          <img class="icon" src="../../../assets/icon/star.png" />
+          <span class="series__content--scrore">{{ item.score }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

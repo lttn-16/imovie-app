@@ -1,0 +1,43 @@
+@use "../../../scss/" as *;
+
+.header {
+  @include flex(center, space-between);
+  &__logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    &__img {
+      width: 70px;
+    }
+
+    &__name {
+      color: $color-white;
+      font-size: 22px;
+      font-family: "Pattaya", sans-serif;
+      letter-spacing: 1px;
+      transform: translateY(5px);
+    }
+  }
+}
+
+.icon {
+  color: $color-white;
+  cursor: pointer;
+  transform: translateY(4px);
+  display: block;
+  @include phone {
+    display: none;
+  }
+  mat-icon {
+    font-size: 30px;
+  }
+}
+
+.searchbox {
+  display: none;
+  @include phone {
+    display: block;
+  }
+}

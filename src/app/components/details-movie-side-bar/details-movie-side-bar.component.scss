@@ -1,0 +1,63 @@
+@use "../../../scss/" as *;
+
+.series {
+  &__list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  &__title {
+    color: $color-white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 20px 0;
+
+    @include phone {
+      margin: 30px 0 20px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 85%;
+  }
+
+  &__cover {
+    width: 80px;
+    height: 100px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+
+  &__content {
+    color: $color-white;
+    &--title {
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      &:hover {
+        color: $color-red-primary;
+      }
+    }
+
+    &--star {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.icon {
+  width: 17px;
+}

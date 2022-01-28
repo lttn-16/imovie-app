@@ -1,0 +1,80 @@
+@use "../../../scss/" as *;
+
+.layout {
+  padding: 0 10px;
+
+  @include mobile {
+    padding: 15px 30px;
+  }
+
+  @include phone {
+    padding: 15px 60px;
+  }
+}
+
+.search {
+  margin: 100px 20px;
+
+  &__wrapper {
+    margin: auto;
+    max-width: 400px;
+  }
+
+  &__top {
+    @include flex(center, center);
+    margin-bottom: 50px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__box {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  &__title {
+    color: $color-white;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+
+  &__bottom {
+    &__title {
+      color: $color-white;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    &__card {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+
+      &__img {
+        width: 110px;
+        min-width: 110px;
+        height: 60px;
+        border-radius: 5px;
+        cursor: pointer;
+        object-fit: cover;
+        &:hover {
+          filter: brightness(80%);
+        }
+      }
+
+      &__title {
+        color: $color-white;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        &:hover {
+          color: $color-red-primary;
+        }
+        @include mobile {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

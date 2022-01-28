@@ -1,0 +1,24 @@
+<div class="search__wrapper" (clickOutside)="onClickedOutside()">
+  <form class="search" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <button class="search__icon" type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
+    <input
+      type="text"
+      placeholder="Search"
+      class="search__field"
+      name="keyword"
+      ngModel
+      #movieSearchInput
+      autocomplete="off"
+      (focus)="onFocus()"
+    />
+  </form>
+  <div class="suggestion" *ngIf="suggestionData.length > 0 && focus">
+    <ng-container *ngFor="let item of suggestionData">
+      <div class="suggestion__item" (click)="onNavigate(htmlToText(item))">
+        {{ htmlToText(item) }}
+      </div>
+    </ng-container>
+  </div>
+</div>

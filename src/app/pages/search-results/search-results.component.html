@@ -1,0 +1,38 @@
+<div class="layout" *ngIf="keyword">
+  <div>
+    <app-header></app-header>
+    <app-search-result
+      [resultsData]="results"
+      [keyword]="keyword"
+    ></app-search-result>
+  </div>
+</div>
+
+<div class="search" *ngIf="!keyword">
+  <div class="search__wrapper">
+    <div class="search__top">
+      <div class="search__title">Search for your favorite movies</div>
+      <div class="search__box">
+        <app-search></app-search>
+      </div>
+    </div>
+    <div class="search__bottom">
+      <div class="search__bottom__title">Popular Searches</div>
+      <ng-container *ngFor="let data of topSearchData">
+        <div class="search__bottom__card">
+          <img
+            class="search__bottom__card__img"
+            [src]="resizeImage(data.cover, '250')"
+            (click)="openDetailsTopBar(data)"
+          />
+          <div
+            class="search__bottom__card__title"
+            (click)="openDetailsTopBar(data)"
+          >
+            {{ data.title }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

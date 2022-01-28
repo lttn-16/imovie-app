@@ -1,0 +1,13 @@
+<div class="layout">
+  <app-header></app-header>
+  <div class="main">
+    <app-details-movie
+      (onClickEpisode)="onClickEpi($event)"
+      [detailData]="detailData"
+    ></app-details-movie>
+    <app-details-movie-side-bar
+      [detailData]="detailData"
+      (onOpenDetail)="openDetails($event)"
+    ></app-details-movie-side-bar>
+  </div>
+</div>

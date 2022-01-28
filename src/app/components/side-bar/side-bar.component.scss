@@ -1,0 +1,104 @@
+@use "../../../scss/" as *;
+
+.side-bar {
+  color: $color-text;
+  padding-left: 0;
+  font-size: 16px;
+  height: 100%;
+  border-right: 1px solid $color-border;
+
+  @include desktop {
+    padding-left: 30px;
+  }
+
+  &-list {
+    margin-top: 30px;
+  }
+
+  &-logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    @include desktop {
+      justify-content: flex-start;
+    }
+
+    &-img {
+      width: 60px;
+      @include desktop {
+        width: 70px;
+      }
+    }
+
+    &-name {
+      color: $color-white;
+      font-size: 22px;
+      font-weight: 500;
+      transform: translateY(5px);
+      font-family: "Pattaya", sans-serif;
+      letter-spacing: 1px;
+      display: none;
+      @include desktop {
+        display: block;
+      }
+    }
+  }
+
+  &-title {
+    margin: 20px 0;
+    font-weight: bold;
+    color: $color-text;
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+
+  &-item {
+    @include flex(center, center);
+    gap: 10px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+
+    @include desktop {
+      justify-content: flex-start;
+    }
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
+
+.active {
+  border-right: 3px solid $color-red-primary;
+  color: $color-white;
+
+  @include mobile {
+    mat-icon {
+      color: $color-red-primary;
+    }
+  }
+
+  @include desktop {
+    mat-icon {
+      color: $color-white;
+    }
+  }
+}
+
+.item__name {
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+
+.search {
+  @include desktop {
+    display: none;
+  }
+}

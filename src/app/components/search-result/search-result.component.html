@@ -1,0 +1,12 @@
+<div class="result">
+  <div class="result__title">Search result for {{ decodeQuery(keyword) }}</div>
+
+  <div class="result__datas" *ngIf="resultsData.length > 0">
+    <ng-container *ngFor="let item of resultsData">
+      <app-card [data]="item"></app-card>
+    </ng-container>
+  </div>
+  <div class="result__nodata" *ngIf="resultsData.length === 0">
+    No result found.
+  </div>
+</div>

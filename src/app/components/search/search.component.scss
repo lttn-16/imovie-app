@@ -1,0 +1,61 @@
+@use "../../../scss/" as *;
+
+.search {
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-grey;
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: white;
+
+  &__icon {
+    color: white;
+    background-color: transparent;
+    border: none;
+    transform: translateY(2px);
+  }
+
+  &__field {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+
+    &::placeholder {
+      color: $color-text;
+      font-weight: 500;
+    }
+  }
+}
+
+.search__wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+}
+
+.suggestion {
+  background-color: #27282e;
+  color: $color-white;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  border-radius: 5px;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+
+  &__item {
+    padding: 10px;
+    border-bottom: 1px solid rgb(107 114 128);
+    cursor: pointer;
+
+    &:hover {
+      background-color: #31333a;
+    }
+  }
+}
