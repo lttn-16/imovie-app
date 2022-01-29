@@ -1,1 +1,17 @@
-<p>history works!</p>
+<div class="history">
+  <div class="history__top">
+    <div class="history__top__title">Watch history</div>
+    <div class="history__top__icon" (click)="onClear()">
+      <mat-icon>delete</mat-icon>
+      <span>Clear</span>
+    </div>
+  </div>
+  <div class="history__bottom" *ngIf="historyData.length > 0">
+    <ng-container *ngFor="let item of historyData">
+      <app-card [data]="item"></app-card>
+    </ng-container>
+  </div>
+  <div class="history__nodata" *ngIf="historyData.length === 0">
+    No result found. Let's enjoy your movie!
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Details, LikeListType} from 'src/app/model';
+import { HistoryService } from 'src/app/services/history.service';
 import { MovieDetailService } from 'src/app/services/movie-detail.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   id: string;
   detailData: Details;
 
-  constructor(private activatedRoute: ActivatedRoute, private movieDetailService: MovieDetailService, private router:Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private movieDetailService: MovieDetailService, private router:Router, private historyService: HistoryService) { }
 
   ngOnInit(): void {
     this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
@@ -27,6 +28,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   getDetails(id: string) : void {
     this.movieDetailService.getMovieDetails(id).then(data => {
       this.detailData = data;
+      this.historyService.addHistory(this.detailData);
     });
   }
 

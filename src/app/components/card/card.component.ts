@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchResultItem } from 'src/app/model';
 
 @Component({
   selector: 'app-card',
@@ -8,7 +7,7 @@ import { SearchResultItem } from 'src/app/model';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() data: SearchResultItem;
+  @Input() data: any;
 
   constructor(private router:Router) { }
 
@@ -19,11 +18,11 @@ export class CardComponent implements OnInit {
     return `https://agvmolqooq.cloudimg.io/v7/${url}?width=${width}&height=${height}`
   }
 
-  openDetails(item: SearchResultItem): void {
-    if(item.domainType === 0){
+  openDetails(item: any): void {
+    if(item.domainType === 0 || item.category === 0){
       this.router.navigate(['movie', item.id]);
     }
-    if(item.domainType === 1){
+    if(item.domainType === 1 || item.category === 1){
       this.router.navigate(['tv', item.id]);
     }
   }

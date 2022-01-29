@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { APIResponse, SearchResultItem, TopBar, TopSearched } from 'src/app/model';
@@ -10,19 +10,19 @@ import { SearchService } from 'src/app/services/search.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
   keyword: string;
   public results: SearchResultItem[]; 
   public topSearchData: TopSearched[];
-  private topBarSub: Subscription;
-
+  
   routeSub: Subscription;
   keywordSub: Subscription;
+  topbarSub: Subscription;
 
   constructor(private route:ActivatedRoute, private service:SearchService, private homeService: HomeService, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param:Params) => {
+    this.routeSub = this.route.queryParams.subscribe((param:Params) => {
       this.keyword = param['q'];
       this.getSearchResut(this.keyword);
     })
@@ -30,13 +30,13 @@ export class SearchResultsComponent implements OnInit {
   }
 
   getSearchResut(keyword: string) : void {
-    this.service.searchResult(keyword).subscribe(data => {
+    this.keywordSub = this.service.searchResult(keyword).subscribe(data => {
       this.results = data.data.searchResults;
     });
   }
 
   getTopBar(): void{
-    this.topBarSub = this.homeService.getTopSearched().subscribe((data: APIResponse<TopBar<TopSearched>>) => {
+    this.topbarSub = this.homeService.getTopSearched().subscribe((data: APIResponse<TopBar<TopSearched>>) => {
       this.topSearchData = data.data.list;
     })
   }
@@ -52,6 +52,12 @@ export class SearchResultsComponent implements OnInit {
 
   resizeImage(url: string, width = "", height = "") {
     return `https://agvmolqooq.cloudimg.io/v7/${url}?width=${width}&height=${height}`
+  }
+
+  ngOnDestroy(): void {
+      if(this.keywordSub) this.keywordSub.unsubscribe();
+      if(this.routeSub) this.routeSub.unsubscribe();
+      if(this.topbarSub) this.topbarSub.unsubscribe();
   }
 
 }

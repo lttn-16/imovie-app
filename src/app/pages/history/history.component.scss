@@ -1,0 +1,63 @@
+@use "../../../scss/" as *;
+
+.history {
+  margin: 30px 0;
+  width: 100%;
+  margin-bottom: 35px;
+
+  &__top {
+    @include flex(center, space-between);
+    margin-bottom: 25px;
+
+    &__title {
+      color: $color-white;
+      font-size: 20px;
+      font-weight: 600;
+      overflow-wrap: break-word;
+      line-height: 32px;
+      @include mobile {
+        font-size: 26px;
+      }
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: $color-red-primary;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 10px;
+      color: $color-white;
+      cursor: pointer;
+
+      @include mobile {
+        padding: 10px 20px;
+      }
+
+      &:hover {
+        background-color: $color-red-light;
+      }
+    }
+  }
+
+  &__bottom {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    display: grid;
+    gap: 30px;
+
+    @include phone {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+  }
+
+  &__nodata {
+    color: $color-white;
+    font-size: 16px;
+    margin-top: 20px;
+    line-height: 22px;
+    @include phone {
+      font-size: 18px;
+    }
+  }
+}

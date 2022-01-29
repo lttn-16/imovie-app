@@ -1,8 +1,11 @@
 @use "../../../scss/" as *;
 
 .card {
-  margin-bottom: 80px;
+  margin-bottom: 55px;
   height: 220px;
+  @include phone {
+    margin-bottom: 70px;
+  }
 
   &__background {
     display: block;
