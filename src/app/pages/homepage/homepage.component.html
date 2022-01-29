@@ -1,122 +1,20 @@
-<div class="layout">
-  <div class="sidebar">
-    <app-side-bar></app-side-bar>
-  </div>
-  <div class="header">
-    <div class="header__logo">
-      <img
-        class="header__logo-img"
-        src="../../../assets/logo/logo_transparent.png"
-        routerLink="/"
-      />
-      <span class="header__logo-name">iMovie</span>
-    </div>
-    <div
-      class="header__mobile__icon"
-      (click)="onClickIcon()"
-      [ngClass]="{ change: isClicked }"
-    >
-      <span
-        class="header__mobile__icon--bar1"
-        [ngClass]="{ 'change--bar1': isClicked }"
-      ></span>
-      <span
-        class="header__mobile__icon--bar2"
-        [ngClass]="{ 'change--bar2': isClicked }"
-      ></span>
-      <span
-        class="header__mobile__icon--bar3"
-        [ngClass]="{ 'change--bar3': isClicked }"
-      ></span>
-    </div>
-  </div>
-
-  <!-- home -->
-  <div
-    class="home"
-    infiniteScroll
-    [infiniteScrollDistance]="2"
-    [infiniteScrollThrottle]="500"
-    (scrolled)="onScroll()"
-  >
-    <app-home
-      [bannerData]="bannerData"
-      (onDetail)="openDetails($event)"
-    ></app-home>
-    <ng-container *ngFor="let data of homeData">
-      <app-hot-movie
-        [data]="data"
-        (onOpenDetail)="openDetails($event)"
-      ></app-hot-movie>
-    </ng-container>
-    <div *ngIf="loading" class="loading">
-      <app-loading></app-loading>
-    </div>
-  </div>
-
-  <!-- topbar -->
-
-  <div class="topbar">
-    <app-top-bar
-      (onOpenDetailTopSearch)="openDetailsTopBar($event)"
-      [topSearch]="topSearchData"
-    ></app-top-bar>
-  </div>
-</div>
-
-<!-- backdrop -->
-
 <div
-  class="backdrop"
-  (click)="clickBackdrop()"
-  [ngClass]="{ move: isClicked }"
-></div>
-
-<!-- sidebar -->
-
-<div class="side-bar" [ngClass]="{ move: isClicked }">
-  <div class="side-bar-logo" routerLink="/">
-    <img
-      class="side-bar-logo-img"
-      src="../../../assets/logo/logo_transparent.png"
-    />
-    <span class="side-bar-logo-name">iMovie</span>
-  </div>
-
-  <div class="side-bar-list">
-    <div class="side-bar-title">MENU</div>
-    <div class="side-bar-items">
-      <div class="side-bar-item" routerLink="/" routerLinkActive="active">
-        <mat-icon routerLink="/">home</mat-icon>
-        <div class="item__name">Home</div>
-      </div>
-
-      <div
-        class="side-bar-item"
-        routerLink="/discovery"
-        routerLinkActive="active"
-      >
-        <mat-icon routerLink="/discovery">explore</mat-icon>
-        <div class="item__name">Discovery</div>
-      </div>
-
-      <div
-        class="side-bar-item"
-        routerLink="/history"
-        routerLinkActive="active"
-      >
-        <mat-icon routerLink="/history">history</mat-icon>
-        <div class="item__name">History</div>
-      </div>
-
-      <div
-        class="side-bar-item search"
-        routerLink="/search"
-        routerLinkActive="active"
-      >
-        <mat-icon routerLink="/search">search</mat-icon>
-        <div class="item__name">Search</div>
-      </div>
-    </div>
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="500"
+  (scrolled)="onScroll()"
+>
+  <app-home
+    [bannerData]="bannerData"
+    (onDetail)="openDetails($event)"
+  ></app-home>
+  <ng-container *ngFor="let data of homeData">
+    <app-hot-movie
+      [data]="data"
+      (onOpenDetail)="openDetails($event)"
+    ></app-hot-movie>
+  </ng-container>
+  <div *ngIf="loading" class="loading">
+    <app-loading></app-loading>
   </div>
 </div>

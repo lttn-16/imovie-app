@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { DiscoveryComponent } from './pages/discovery/discovery.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -10,23 +12,23 @@ import { TvDetailComponent } from './pages/tv-detail/tv-detail.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomepageComponent,
+    component: HomeLayoutComponent,
+    children: [
+      {path: '', component: HomepageComponent, pathMatch: 'full'},
+    ]
   },
-  { path: 'discovery',
-    component: DiscoveryComponent,
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {path: 'movie/:id', component: MovieDetailComponent},
+      {path: 'tv/:id', component: TvDetailComponent},
+      {path: 'history', component: HistoryComponent}
+    ]
   },
-  { path: 'history',
-    component: HistoryComponent,
-  },
-  { path: 'movie/:id',
-    component: MovieDetailComponent,
-  },
-  { path: 'tv/:id',
-    component: TvDetailComponent,
-  },
-  { path: 'search',
-    component: SearchResultsComponent,
-  },
+  { path: 'discovery', component: DiscoveryComponent },
+  { path: 'search', component: SearchResultsComponent },
+  
   { path: '**', redirectTo: '/' },
 ];
 

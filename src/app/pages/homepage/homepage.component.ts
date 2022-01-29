@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { APIResponse, Home, HomeSection, RecommendContentVOList, TopBar, TopSearched } from 'src/app/model';
+import { APIResponse, Home, HomeSection, RecommendContentVOList } from 'src/app/model';
 import { HomeService } from 'src/app/services/home.service';
 
 @Component({
@@ -12,12 +12,9 @@ import { HomeService } from 'src/app/services/home.service';
 export class HomepageComponent implements OnInit, OnDestroy {
   public homeData: HomeSection[];
   public bannerData: RecommendContentVOList[];
-  public topSearchData: TopSearched[];
-  public isClicked = false;
-
-  private index = 0;
   private homeSub: Subscription;
-  private topBarSub: Subscription;
+  
+  private index = 0;
   public loading = false;
   private outOfData = false;
 
@@ -25,7 +22,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getHomePage();
-    this.getTopBar();
   }
 
   getHomePage(): void{
@@ -39,11 +35,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
     })
   } 
 
-  getTopBar(): void{
-    this.topBarSub = this.homeService.getTopSearched().subscribe((data: APIResponse<TopBar<TopSearched>>) => {
-      this.topSearchData = data.data.list;
-    })
-  }
 
   openDetails(item: RecommendContentVOList): void {
     if(item.category === null){
@@ -66,23 +57,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDetailsTopBar(item: TopSearched): void {
-    if(item.domainType === 0){
-      this.router.navigate(['movie', item.id]);
-    }
-    if(item.domainType === 1){
-      this.router.navigate(['tv', item.id]);
-    }
-  }
-
-  onClickIcon () {
-    this.isClicked = true;
-  };
-
-  clickBackdrop() {
-    this.isClicked = false;
-  }
-
+  
   onScroll() {
     if(!this.outOfData){
       this.loading = true;
@@ -98,7 +73,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       if(this.homeSub) this.homeSub.unsubscribe();
-      if(this.topBarSub) this.topBarSub.unsubscribe();
   }
 
 }

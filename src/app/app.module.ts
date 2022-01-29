@@ -30,6 +30,8 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     SearchResultComponent,
     CardComponent,
     LoadingComponent,
+    HomeLayoutComponent,
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,

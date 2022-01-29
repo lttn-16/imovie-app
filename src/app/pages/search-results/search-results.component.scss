@@ -34,9 +34,12 @@
 
   &__title {
     color: $color-white;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 26px;
     margin-bottom: 20px;
+    @include mobile {
+      font-size: 22px;
+    }
   }
 
   &__bottom {
