@@ -179,3 +179,8 @@
 .move {
   transform: translateX(0);
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}

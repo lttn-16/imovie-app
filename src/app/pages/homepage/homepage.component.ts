@@ -15,8 +15,11 @@ export class HomepageComponent implements OnInit, OnDestroy {
   public topSearchData: TopSearched[];
   public isClicked = false;
 
+  private index = 0;
   private homeSub: Subscription;
   private topBarSub: Subscription;
+  public loading = false;
+  private outOfData = false;
 
   constructor(private homeService: HomeService, private router: Router) { }
 
@@ -26,7 +29,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   getHomePage(): void{
-    this.homeSub = this.homeService.getHome().subscribe((data: APIResponse<Home<HomeSection>>) => {
+    this.homeSub = this.homeService.getHome(this.index).subscribe((data: APIResponse<Home<HomeSection>>) => {
       const banner = data.data.recommendItems.filter(d => d.homeSectionType === 'BANNER');;
       if(banner){
         this.bannerData = banner[0].recommendContentVOList;
@@ -78,6 +81,19 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   clickBackdrop() {
     this.isClicked = false;
+  }
+
+  onScroll() {
+    if(!this.outOfData){
+      this.loading = true;
+      this.homeService.getHome(this.index + 1).subscribe((data: APIResponse<Home<HomeSection>>) => {
+        const dataWithoutBanner = data.data.recommendItems.filter(d => d.homeSectionName !== "");
+        if(dataWithoutBanner) this.homeData = [...this.homeData,...dataWithoutBanner];
+        if(dataWithoutBanner.length < 4) this.outOfData = true;
+        this.loading = false;
+        this.index = this.index + 1;
+      }); 
+    }
   }
 
   ngOnDestroy(): void {

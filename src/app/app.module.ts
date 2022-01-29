@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VimeModule } from '@vime/angular';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -28,6 +29,7 @@ import { TvDetailComponent } from './pages/tv-detail/tv-detail.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CardComponent } from './components/card/card.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { CardComponent } from './components/card/card.component';
     SearchResultsComponent,
     SearchResultComponent,
     CardComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { CardComponent } from './components/card/card.component';
     SwiperModule,
     VimeModule,
     FormsModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    InfiniteScrollModule
   ],
   providers: [
     {
