@@ -1,7 +1,11 @@
 <div class="history">
   <div class="history__top">
     <div class="history__top__title">Watch history</div>
-    <div class="history__top__icon" (click)="onClear()">
+    <div
+      class="history__top__icon"
+      (click)="onClear()"
+      *ngIf="historyData.length > 0"
+    >
       <mat-icon>delete</mat-icon>
       <span>Clear</span>
     </div>
