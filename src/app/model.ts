@@ -35,6 +35,11 @@ export interface APIResponse<T> {
     msg: string;
   }
 
+
+export interface AdvanceSearch{
+  searchResults: AdvanceSearchItem[];
+}
+
   export interface TopBar<T> {
     list: T[];
   }
@@ -264,5 +269,11 @@ export interface EpisodeVoType{
     mediaUrl: string;
     totalDuration: number;
   }
+
+export interface OptionList {
+  name: string;
+  params: string;
+  screeningType: string;
+}
 
 export interface Details extends SourceType, DetailType {}

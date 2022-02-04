@@ -56,8 +56,5 @@
     font-size: 16px;
     margin-top: 20px;
     line-height: 22px;
-    @include phone {
-      font-size: 18px;
-    }
   }
 }

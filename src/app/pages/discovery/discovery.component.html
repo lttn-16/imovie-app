@@ -1,1 +1,84 @@
-<p>discovery works!</p>
+<mat-tab-group
+  (selectedTabChange)="onTabChanged($event)"
+  mat-align-tabs="start"
+  class="discovery"
+  animationDuration="0ms"
+>
+  <mat-tab label="TV Series">
+    <ng-template [ngTemplateOutlet]="advanceItem"></ng-template>
+  </mat-tab>
+
+  <mat-tab label="Movie">
+    <ng-template [ngTemplateOutlet]="advanceItem"></ng-template>
+  </mat-tab>
+
+  <mat-tab label="Anime">
+    <ng-template [ngTemplateOutlet]="advanceItem"></ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- template -->
+<ng-template #advanceItem>
+  <div class="select">
+    <mat-form-field appearance="fill" floatLabel="never">
+      <mat-select
+        [(ngModel)]="selectedRegion"
+        (selectionChange)="dispatchSearch()"
+      >
+        <mat-option *ngFor="let item of regionsList" [value]="item.params">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="never">
+      <mat-select
+        [(ngModel)]="selectedCategory"
+        (selectionChange)="dispatchSearch()"
+      >
+        <mat-option *ngFor="let item of categoryList" [value]="item.params">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="never">
+      <mat-select
+        [(ngModel)]="selectedPeriod"
+        (selectionChange)="dispatchSearch()"
+      >
+        <mat-option *ngFor="let item of periodList" [value]="item.params">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="never">
+      <mat-select
+        [(ngModel)]="selectedSub"
+        (selectionChange)="dispatchSearch()"
+      >
+        <mat-option *ngFor="let item of subList" [value]="item.params">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="never">
+      <mat-select
+        [(ngModel)]="selectedRecent"
+        (selectionChange)="dispatchSearch()"
+      >
+        <mat-option *ngFor="let item of recentList" [value]="item.params">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!-- display item -->
+  <div class="result__datas" *ngIf="configItem.length > 0">
+    <ng-container *ngFor="let item of configItem">
+      <app-card [data]="item"></app-card>
+    </ng-container>
+  </div>
+
+  <div class="result__nodata" *ngIf="configItem.length === 0">
+    No result found.
+  </div>
+</ng-template>

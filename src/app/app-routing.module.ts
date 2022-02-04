@@ -23,12 +23,11 @@ const routes: Routes = [
     children: [
       {path: 'movie/:id', component: MovieDetailComponent},
       {path: 'tv/:id', component: TvDetailComponent},
-      {path: 'history', component: HistoryComponent}
+      {path: 'history', component: HistoryComponent},
+      { path: 'discovery', component: DiscoveryComponent },
     ]
   },
-  { path: 'discovery', component: DiscoveryComponent },
   { path: 'search', component: SearchResultsComponent },
-  
   { path: '**', redirectTo: '/' },
 ];
 

@@ -10,6 +10,8 @@ import { VimeModule } from '@vime/angular';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
 
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -67,7 +69,9 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     VimeModule,
     FormsModule,
     ClickOutsideModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [
     {

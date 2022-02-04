@@ -14,7 +14,7 @@ export class SearchService {
   public searchKeywords(keyword: string):Observable<APIResponse<any>>{
     return this.http.post<APIResponse<any>>(`${env.BASE_URL}/search/searchLenovo`, {
       searchKeyWord: keyword,
-      size: 1000,
+      size: 15,
     });
   }
 
