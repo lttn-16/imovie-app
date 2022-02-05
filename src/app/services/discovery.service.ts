@@ -17,7 +17,7 @@ export class DiscoveryService {
 
   advanceSearch(config = {}):Observable<APIResponse<AdvanceSearch>>{
     return this.http.post<APIResponse<AdvanceSearch>>(`${env.BASE_URL}/search/v1/search`, {
-      size: 50,
+      size: 24,
       ...config
     })
   }

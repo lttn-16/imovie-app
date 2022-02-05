@@ -26,6 +26,9 @@ export class DiscoveryComponent implements OnInit, OnDestroy {
 
   configItem: AdvanceSearchItem[];
 
+  loading = false;
+  outOfData = false;
+
   searchSub: Subscription;
 
   constructor(private discService:DiscoveryService) { }
@@ -38,19 +41,18 @@ export class DiscoveryComponent implements OnInit, OnDestroy {
     return data.filter(item => item.name === type);
   }
 
-  dispatchSearch(){
+  dispatchSearch(sort = ""){
     const configs = {
       area: this.selectedRegion,
       category: this.selectedCategory,
       order: this.selectedRecent,
       params: this.data[0].params,
-      sort: "",
+      sort: sort,
       subtitles: this.selectedSub,
       year: this.selectedPeriod
     }
     this.searchSub = this.discService.advanceSearch(configs).subscribe((data:APIResponse<AdvanceSearch>) => {
       this.configItem = data.data.searchResults;
-      console.log(this.configItem);
     })
   }
 
@@ -86,6 +88,27 @@ export class DiscoveryComponent implements OnInit, OnDestroy {
   onTabChanged(event: MatTabChangeEvent) {
     this.tab = event.tab.textLabel;
     this.dispatchList();
+  }
+
+  onScroll() {
+    if(!this.outOfData){
+      this.loading = true;
+      const sortItem = this.configItem.slice(-1)[0].sort;
+      const configs = {
+        area: this.selectedRegion,
+        category: this.selectedCategory,
+        order: this.selectedRecent,
+        params: this.data[0].params,
+        sort: sortItem,
+        subtitles: this.selectedSub,
+        year: this.selectedPeriod
+      }
+      this.searchSub = this.discService.advanceSearch(configs).subscribe((data:APIResponse<AdvanceSearch>) => {
+        if(data.data.searchResults.length !== 0) this.configItem = [...this.configItem, ...data.data.searchResults];
+        else this.outOfData = true;
+        this.loading = false;
+      })
+    }
   }
 
   ngOnDestroy(): void {

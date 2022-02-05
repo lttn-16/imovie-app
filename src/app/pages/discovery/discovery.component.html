@@ -3,6 +3,10 @@
   mat-align-tabs="start"
   class="discovery"
   animationDuration="0ms"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
 >
   <mat-tab label="TV Series">
     <ng-template [ngTemplateOutlet]="advanceItem"></ng-template>
@@ -76,6 +80,10 @@
     <ng-container *ngFor="let item of configItem">
       <app-card [data]="item"></app-card>
     </ng-container>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <app-loading></app-loading>
   </div>
 
   <div class="result__nodata" *ngIf="configItem.length === 0">
