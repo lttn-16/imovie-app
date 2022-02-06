@@ -26,6 +26,12 @@ export class DetailsMovieComponent implements OnInit,OnDestroy {
     this.onClickEpisode.emit(epiItem);
   }
 
+  subtitleProxy(url: string) {
+    const x = `https://srt-to-vtt.vercel.app?url=${encodeURIComponent(url)}`;
+    console.log(x);
+    return x;
+  }
+
   ngOnDestroy(): void {
       if(this.routeSub) this.routeSub.unsubscribe();
   }
