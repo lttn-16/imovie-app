@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Details, EpisodeVoType, LikeListType } from 'src/app/model';
+import { Details, EpisodeVoType, LikeListType, SubList } from 'src/app/model';
 import { HistoryService } from 'src/app/services/history.service';
 import { TvDetailService } from 'src/app/services/tv-detail.service';
 
@@ -12,6 +12,7 @@ import { TvDetailService } from 'src/app/services/tv-detail.service';
 })
 export class TvDetailComponent implements OnInit, OnDestroy {
   routeSub: Subscription;
+  subList: SubList[];
   
   id: string;
   detailData: Details;
@@ -33,7 +34,18 @@ export class TvDetailComponent implements OnInit, OnDestroy {
     this.tvDetailService.getTVDetails(id, episode).then(data => {
       this.detailData = data;
       this.historyService.addHistory(this.detailData);
+      this.getSublist();
     });
+  }
+
+  getSublist(){
+    this.activatedRoute.queryParams.subscribe((param: Params) => {
+      const episodeNumber = +param['episode'] || 1;
+      const list = this.detailData.episodeVo.find(item => item.seriesNo ===  episodeNumber);
+      if(list){
+        this.subList = list.subtitlingList;
+      }
+    })
   }
 
   openDetails(item: LikeListType): void {

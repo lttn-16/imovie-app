@@ -19,7 +19,7 @@ export class MovieDetailService {
             category: 0,
             contentId:id,
             episodeId: dataDetail.data.episodeVo[0].id,
-            definition: 'GROOT_LD'
+            definition: 'GROOT_HD'
         }
         sourceData = await this.http.get<APIResponse<SourceType>>(`${env.BASE_URL}/media/previewInfo`, {params: sourceParams}).toPromise();
     }

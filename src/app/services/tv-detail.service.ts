@@ -3,6 +3,13 @@ import { Injectable } from '@angular/core';
 import { APIResponse, DetailType, SourceType } from '../model';
 import { environment as env } from 'src/environments/environment';
 
+export interface Episode{
+  category: number,
+  contentId:string,
+  episodeId: number,
+  definition: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +26,7 @@ export class TvDetailService {
             category: 1,
             contentId:id,
             episodeId: idEpisode ? idEpisode : dataDetail.data.episodeVo[0].id,
-            definition: 'GROOT_LD'
+            definition: 'GROOT_HD'
         }
         episodeData = await this.http.get<APIResponse<SourceType>>(`${env.BASE_URL}/media/previewInfo`, {params: episodeParams}).toPromise();
     }

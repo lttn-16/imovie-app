@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Details, LikeListType} from 'src/app/model';
+import { Details, LikeListType, SubList} from 'src/app/model';
 import { HistoryService } from 'src/app/services/history.service';
 import { MovieDetailService } from 'src/app/services/movie-detail.service';
 
@@ -12,6 +12,7 @@ import { MovieDetailService } from 'src/app/services/movie-detail.service';
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
   routeSub: Subscription;
+  subList: SubList[];
   
   id: string;
   detailData: Details;
@@ -28,10 +29,11 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   getDetails(id: string) : void {
     this.movieDetailService.getMovieDetails(id).then(data => {
       this.detailData = data;
-      console.log(this.detailData);
+      this.subList = this.detailData.episodeVo[0].subtitlingList;
       this.historyService.addHistory(this.detailData);
     });
   }
+
 
   openDetails(item: LikeListType): void {
     if(item.category === 0){

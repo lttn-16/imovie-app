@@ -1,9 +1,6 @@
 @use "./scss/" as *;
 @import "swiper/scss";
 
-@import "~@vime/core/themes/default.css";
-@import "~@vime/core/themes/light.css";
-
 body {
   font-family: $font-base;
   background-color: $color-black;

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Details, EpisodeVoType } from 'src/app/model';
+import { Details, EpisodeVoType, SubList } from 'src/app/model';
 
 @Component({
   selector: 'app-details-movie',
@@ -10,11 +10,13 @@ import { Details, EpisodeVoType } from 'src/app/model';
 })
 export class DetailsMovieComponent implements OnInit,OnDestroy {
   @Input() detailData: Details;
+  @Input() subList: SubList[];
   @Output() onClickEpisode = new EventEmitter();
+  
   episode: number;
   routeSub: Subscription;
-
-  constructor(private route: ActivatedRoute) {}
+  
+  constructor(private route: ActivatedRoute, private router:Router) {}
 
   ngOnInit(): void {
     this.routeSub = this.route.queryParams.subscribe((param: Params) => {
@@ -27,9 +29,7 @@ export class DetailsMovieComponent implements OnInit,OnDestroy {
   }
 
   subtitleProxy(url: string) {
-    const x = `https://srt-to-vtt.vercel.app?url=${encodeURIComponent(url)}`;
-    console.log(x);
-    return x;
+    return `https://srt-to-vtt.vercel.app?url=${encodeURIComponent(url)}`;
   }
 
   ngOnDestroy(): void {

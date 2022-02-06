@@ -1,13 +1,48 @@
 <div class="detail">
-  <vm-player class="detail__trailer" *ngIf="detailData.mediaUrl">
-    <vm-hls version="latest" [poster]="detailData.coverHorizontalUrl">
-      <source
-        [attr.data-src]="detailData.mediaUrl"
-        type="application/x-mpegURL"
-      />
-    </vm-hls>
-    <vm-default-ui> </vm-default-ui>
-  </vm-player>
+  <vg-player class="detail__trailer" *ngIf="detailData.mediaUrl">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-controls [vgAutohide]="true" [vgAutohideTime]="1.5">
+      <vg-play-pause></vg-play-pause>
+      <vg-playback-button></vg-playback-button>
+
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time
+          [vgSlider]="true"
+        ></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+
+      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+      <vg-track-selector></vg-track-selector>
+      <vg-mute></vg-mute>
+
+      <vg-volume></vg-volume>
+
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+    <video
+      #media
+      [vgMedia]="$any(media)"
+      [vgHls]="detailData.mediaUrl"
+      [poster]="detailData.coverHorizontalUrl"
+      id="my-video"
+      crossorigin
+    >
+      <ng-container *ngFor="let item of subList">
+        <track
+          kind="subtitles"
+          [label]="item.language"
+          [src]="subtitleProxy(item.subtitlingUrl)"
+          [srclang]="item.languageAbbr"
+        />
+      </ng-container>
+    </video>
+  </vg-player>
 
   <div class="detail__title">{{ detailData.name }}</div>
   <div class="detail__rate">

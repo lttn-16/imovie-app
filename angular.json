@@ -32,9 +32,12 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@videogular/ngx-videogular/fonts/videogular.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hls.js/dist/hls.min.js"
+            ]
           },
           "configurations": {
             "production": {

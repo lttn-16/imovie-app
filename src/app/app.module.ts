@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { VimeModule } from '@vime/angular';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -34,6 +33,13 @@ import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { VgStreamingModule } from '@videogular/ngx-videogular/streaming';
+
 
 
 @NgModule({
@@ -66,12 +72,16 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     MatIconModule,
     HttpClientModule,
     SwiperModule,
-    VimeModule,
     FormsModule,
     ClickOutsideModule,
     InfiniteScrollModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    VgStreamingModule
   ],
   providers: [
     {

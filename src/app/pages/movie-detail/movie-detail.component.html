@@ -1,5 +1,8 @@
 <div class="main">
-  <app-details-movie [detailData]="detailData"></app-details-movie>
+  <app-details-movie
+    [detailData]="detailData"
+    [subList]="subList"
+  ></app-details-movie>
   <app-details-movie-side-bar
     [detailData]="detailData"
     (onOpenDetail)="openDetails($event)"

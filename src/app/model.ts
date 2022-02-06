@@ -84,13 +84,15 @@ export interface EpisodeVoType{
   name: string;
   resourceType: number;
   seriesNo: number;
-  subtitlingList: {
-    language: string;
-    languageAbbr: string;
-    subtitlingUrl: string;
-    translateType: number;
-  }[];
+  subtitlingList: SubList[];
   vid: string;
+}
+
+export interface SubList{
+  language: string;
+  languageAbbr: string;
+  subtitlingUrl: string;
+  translateType: number;
 }
 
   export interface DetailType {
