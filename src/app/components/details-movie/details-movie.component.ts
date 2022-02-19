@@ -69,10 +69,11 @@ export class DetailsMovieComponent implements OnInit,OnDestroy {
         content: f.value.comment,
         createdAt: new Date()
       }
-      this.comment.onCreateComments(data, this.id);
+      this.comment.onCreateComments(data, this.id).subscribe(data => {
+        this.fetchAllComment();
+      });
     }
     this.form.resetForm();
-    this.fetchAllComment();
   }
 
   ngOnDestroy(): void {

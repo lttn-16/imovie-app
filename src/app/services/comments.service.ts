@@ -13,7 +13,7 @@ export class CommentsService {
   constructor(private http: HttpClient) { }
 
   onCreateComments(data: CommentType, id: string){
-    this.http.post(`https://imovie-14daf-default-rtdb.asia-southeast1.firebasedatabase.app/${id}.json`, data).subscribe();
+    return this.http.post(`https://imovie-14daf-default-rtdb.asia-southeast1.firebasedatabase.app/${id}.json`, data);
   }
 
   fetchComments(id: string){
