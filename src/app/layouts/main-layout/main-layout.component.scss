@@ -1,11 +1,11 @@
 @use "../../../scss/" as *;
 
 .layout {
-  padding: 0 10px;
+  padding: 10px 20px;
   @include mobile {
-    padding: 15px 30px;
+    padding: 25px 40px;
   }
   @include phone {
-    padding: 15px 60px;
+    padding: 25px 70px;
   }
 }

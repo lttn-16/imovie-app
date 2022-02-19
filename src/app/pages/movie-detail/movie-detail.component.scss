@@ -3,7 +3,7 @@
 .main {
   @include phone {
     display: grid;
-    grid-template-columns: 7fr 3fr;
+    grid-template-columns: 7.3fr 2.7fr;
     gap: 50px;
   }
 }

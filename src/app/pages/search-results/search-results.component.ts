@@ -51,7 +51,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   }
 
   resizeImage(url: string, width = "", height = "") {
-    return `https://agvmolqooq.cloudimg.io/v7/${url}?width=${width}&height=${height}`
+    return `https://acqdgduijq.cloudimg.io/${url}?width=${width}&height=${height}`
   }
 
   ngOnDestroy(): void {

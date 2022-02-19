@@ -5,6 +5,7 @@
   margin-bottom: 40px;
   @include mobile {
     margin-bottom: 50px;
+    margin-top: 10px;
   }
 
   &__background {

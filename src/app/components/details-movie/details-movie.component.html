@@ -80,4 +80,46 @@
       </ng-container>
     </div>
   </div>
+
+  <!-- comments -->
+  <div class="comment">
+    <div class="comment__title">Comments</div>
+    <div class="comment__alert" *ngIf="!user">
+      <div>You need to sign in to comment</div>
+      <button class="comment__btn" routerLink="/login">Sign in</button>
+    </div>
+    <form
+      class="comment__form"
+      *ngIf="user"
+      (ngSubmit)="onSubmit(f)"
+      #f="ngForm"
+    >
+      <img [src]="user.photoURL" class="comment__form__avt" />
+      <input
+        class="comment__form__field"
+        type="text"
+        name="comment"
+        placeholder="Add comment..."
+        ngModel
+        #commentInput
+      />
+      <button type="submit" class="comment__form__btn">
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+    <div class="comment__list" *ngIf="cmtData">
+      <div class="comment__item" *ngFor="let item of cmtData">
+        <img [src]="item.user.photoURL" class="comment__item__avt" />
+        <div class="comment__item__info">
+          <div class="comment__item__info__title">
+            {{ item.user.displayName }}
+            <span class="comment__item__info__time">{{
+              calDayPassed(item.createdAt)
+            }}</span>
+          </div>
+          <div class="comment__item__info__content">{{ item.content }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

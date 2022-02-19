@@ -102,4 +102,26 @@
       </div>
     </div>
   </div>
+
+  <div class="side-bar-list">
+    <div class="side-bar-title">PERSONAL</div>
+    <div class="side-bar-items" *ngIf="user">
+      <div class="side-bar-item">
+        <img class="avatar" [src]="user.photoURL" />
+        <div class="item__name">{{ user.displayName }}</div>
+      </div>
+    </div>
+    <div class="side-bar-items" *ngIf="!user">
+      <div class="side-bar-item" routerLink="/login">
+        <mat-icon routerLink="/login">login</mat-icon>
+        <div class="item__name">Sign in</div>
+      </div>
+    </div>
+    <div class="side-bar-items" *ngIf="user">
+      <div class="side-bar-item" (click)="signOut()">
+        <mat-icon>logout</mat-icon>
+        <div class="item__name">Sign out</div>
+      </div>
+    </div>
+  </div>
 </div>

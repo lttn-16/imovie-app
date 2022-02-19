@@ -39,8 +39,12 @@ import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgStreamingModule } from '@videogular/ngx-videogular/streaming';
+import { LoginComponent } from './pages/login/login.component';
 
-
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -64,6 +68,7 @@ import { VgStreamingModule } from '@videogular/ngx-videogular/streaming';
     LoadingComponent,
     HomeLayoutComponent,
     MainLayoutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +86,10 @@ import { VgStreamingModule } from '@videogular/ngx-videogular/streaming';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    VgStreamingModule
+    VgStreamingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [
     {

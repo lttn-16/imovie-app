@@ -16,12 +16,17 @@
   }
 
   &__field {
-    width: 100%;
     background-color: transparent;
     color: white;
     border: none;
     outline: none;
     padding: 0 10px;
+    width: 150px;
+    transition: all 0.2s ease-out;
+
+    @include tablet {
+      width: 250px;
+    }
 
     &::placeholder {
       color: $color-text;

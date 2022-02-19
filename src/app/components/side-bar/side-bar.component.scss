@@ -9,6 +9,7 @@
 
   @include desktop {
     padding-left: 30px;
+    padding-top: 10px;
   }
 
   &-list {
@@ -27,8 +28,10 @@
 
     &-img {
       width: 60px;
+      margin-top: 20px;
       @include desktop {
         width: 70px;
+        margin-top: 0;
       }
     }
 
@@ -101,4 +104,10 @@
   @include desktop {
     display: none;
   }
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
 }

@@ -1,0 +1,19 @@
+<div class="login">
+  <div class="login__form">
+    <div class="login__title">Sign In</div>
+    <div
+      class="login__button--goole login__button"
+      (click)="auth.googleSignin()"
+    >
+      <img src="../../../assets/icon/google.svg" height="25" width="25" />
+      <span>Sign in with Google</span>
+    </div>
+    <div
+      class="login__button--facebook login__button"
+      (click)="auth.facebookSignin()"
+    >
+      <img src="../../../assets/icon/facebook.svg" height="25" width="25" />
+      <span>Sign in with Facebook</span>
+    </div>
+  </div>
+</div>

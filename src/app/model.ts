@@ -198,15 +198,10 @@ export interface SubList{
   }
   
   export interface CommentType {
+    id?: string;
     user: User;
-    value: string;
-    reactions: {
-      [key: string]: number;
-    };
-    createdAt: {
-      nanoseconds: number;
-      seconds: number;
-    };
+    content: string;
+    createdAt: Date;
   }
   
   export interface DiscoveryItem {
@@ -279,3 +274,4 @@ export interface OptionList {
 }
 
 export interface Details extends SourceType, DetailType {}
+

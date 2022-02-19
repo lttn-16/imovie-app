@@ -16,7 +16,7 @@ export class TopBarComponent implements OnInit {
   }
 
   resizeImage(url: string, width = "", height = "") {
-    return `https://agvmolqooq.cloudimg.io/v7/${url}?width=${width}&height=${height}`
+    return `https://acqdgduijq.cloudimg.io/${url}?width=${width}&height=${height}`
   }
 
   onClick(item: TopSearched): void{

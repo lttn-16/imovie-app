@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { APIResponse, TopBar, TopSearched } from 'src/app/model';
+import { APIResponse, TopBar, TopSearched, User } from 'src/app/model';
+import { AuthService } from 'src/app/services/auth.service';
 import { HomeService } from 'src/app/services/home.service';
 
 @Component({
@@ -13,11 +14,15 @@ export class HomeLayoutComponent implements OnInit, OnDestroy {
   public isClicked = false;
   public topSearchData: TopSearched[];
   private topBarSub: Subscription;
+  user: User | undefined;
 
-  constructor(private homeService: HomeService, private router: Router) { }
+  constructor(public auth: AuthService, private homeService: HomeService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTopBar();
+    this.auth.user$.subscribe(data => {
+      if(data) this.user = data;
+    })
   }
 
   getTopBar(): void{
@@ -41,6 +46,11 @@ export class HomeLayoutComponent implements OnInit, OnDestroy {
 
   clickBackdrop() {
     this.isClicked = false;
+  }
+
+  signOut(){
+    this.auth.signOut();
+    this.user = undefined;
   }
 
   ngOnDestroy(): void {
