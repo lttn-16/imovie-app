@@ -85,7 +85,7 @@
   <div class="comment">
     <div class="comment__title">Comments</div>
     <div class="comment__alert" *ngIf="!user">
-      <div>You need to sign in to comment</div>
+      <div class="comment__alert__contents">You need sign in to comment</div>
       <button class="comment__btn" routerLink="/login">Sign in</button>
     </div>
     <form

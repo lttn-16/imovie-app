@@ -121,7 +121,6 @@ vg-controls vg-scrub-bar-current-time {
 
   &__form {
     @include flex(center, space-between);
-    gap: 10px;
     border: 1px solid $color-grey;
     border-radius: 40px;
     padding: 8px 10px;
@@ -150,6 +149,14 @@ vg-controls vg-scrub-bar-current-time {
       &:hover {
         opacity: 0.9;
       }
+    }
+  }
+
+  &__alert__contents {
+    font-size: 14px;
+
+    @include mobile {
+      font-size: 16px;
     }
   }
 
