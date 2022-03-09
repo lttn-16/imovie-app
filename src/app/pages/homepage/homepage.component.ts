@@ -26,11 +26,11 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   getHomePage(): void{
     this.homeSub = this.homeService.getHome(this.index).subscribe((data: APIResponse<Home<HomeSection>>) => {
-      const banner = data.data.recommendItems.filter(d => d.homeSectionType === 'BANNER');;
+      const banner = data.data.recommendItems.filter(d => d.homeSectionType === 'BANNER');
       if(banner){
-        this.bannerData = banner[0].recommendContentVOList;
+        this.bannerData = banner[1].recommendContentVOList;
       }
-      const dataWithoutBanner = data.data.recommendItems.filter(d => d.homeSectionName !== "");
+      const dataWithoutBanner = data.data.recommendItems.filter(d => d.homeSectionName !== "" && d.bannerProportion === null);
       if(dataWithoutBanner) this.homeData = dataWithoutBanner;
     })
   } 
@@ -60,13 +60,17 @@ export class HomepageComponent implements OnInit, OnDestroy {
   
   onScroll() {
     if(!this.outOfData){
+      this.index += 1;
       this.loading = true;
-      this.homeService.getHome(this.index + 1).subscribe((data: APIResponse<Home<HomeSection>>) => {
-        const dataWithoutBanner = data.data.recommendItems.filter(d => d.homeSectionName !== "");
+      this.homeService.getHome(this.index).subscribe((data: APIResponse<Home<HomeSection>>) => {
+        const dataWithoutBanner = data.data.recommendItems.filter(d => d.homeSectionName !== "" && d.bannerProportion === null);
         if(dataWithoutBanner) this.homeData = [...this.homeData,...dataWithoutBanner];
-        if(dataWithoutBanner.length < 4) this.outOfData = true;
+        
+        // Filter unique homeSectionName
+        this.homeData = [...new Map(this.homeData.map((item) => [item.homeSectionName, item])).values()];
+      
+        if(dataWithoutBanner.length === 0) this.outOfData = true;
         this.loading = false;
-        this.index = this.index + 1;
       }); 
     }
   }
