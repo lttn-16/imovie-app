@@ -28,7 +28,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   getDetails(id: string) : void {
     this.movieDetailService.getMovieDetails(id).then(data => {
-      this.detailData = data;
+      this.detailData = {...data, mediaUrl: "/" + data.mediaUrl.substring(data.mediaUrl.indexOf("/") + 1)};
       this.subList = this.detailData.episodeVo[0].subtitlingList;
       this.historyService.addHistory(this.detailData);
     });

@@ -32,7 +32,7 @@ export class TvDetailComponent implements OnInit, OnDestroy {
 
   getDetails(id: string, episode?: number) {
     this.tvDetailService.getTVDetails(id, episode).then(data => {
-      this.detailData = data;
+      this.detailData = {...data, mediaUrl: "/" + data.mediaUrl.substring(data.mediaUrl.indexOf("/") + 1)};
       this.historyService.addHistory(this.detailData);
       this.getSublist();
     });
