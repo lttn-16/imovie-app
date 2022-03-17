@@ -12,6 +12,7 @@ export class HttpHeaderInterceptor implements HttpInterceptor{
                 lang: "en",
                 versioncode: "11",
                 clienttype: "ios_jike_default",
+                'Content-Type': 'application/json'
             },
         })
         return next.handle(req)
