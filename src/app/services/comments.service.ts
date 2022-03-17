@@ -17,7 +17,7 @@ export class CommentsService {
   }
 
   fetchComments(id: string){
-    return this.http.get<{[key: string]: CommentType}>(`https://imovie-14daf-default-rtdb.asia-southeast1.firebasedatabase.app/${id}.json`)
+    return this.http.get<{[key: string]: CommentType}>(`https://imovie-14daf-default-rtdb.asia-southeast1.firebasedatabase.app/${id}.json`,)
     .pipe(
       map(responseData => {
         const dataArray: CommentType[] = [];

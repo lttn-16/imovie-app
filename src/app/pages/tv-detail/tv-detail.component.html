@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="detailData">
   <app-details-movie
     (onClickEpisode)="onClickEpi($event)"
     [detailData]="detailData"
