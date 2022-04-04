@@ -28,7 +28,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.homeSub = this.homeService.getHome(this.index).subscribe((data: APIResponse<Home<HomeSection>>) => {
       const banner = data.data.recommendItems.filter(d => d.homeSectionType === 'BANNER');
       if(banner){
-        this.bannerData = banner[1].recommendContentVOList;
+        this.bannerData = banner[0].recommendContentVOList;
       }
       const dataWithoutBanner = data.data.recommendItems.filter(d => d.homeSectionName !== "" && d.bannerProportion === null);
       if(dataWithoutBanner) this.homeData = dataWithoutBanner;
